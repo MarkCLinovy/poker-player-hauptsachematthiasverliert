@@ -11,6 +11,10 @@ class Player {
         bet(player.stack);
         console.log("preflop: all in");
         return;
+      } else if (gameState.players[gameState.in_action].bet < 100 && Player.hasLowPocket(player)) {
+        bet(250);
+        console.log("lowpocket bet 250");
+        return;
       } else if (gameState.players[gameState.in_action].bet < 100 && Player.isOneRoyal(player)) {
         bet(250);
         console.log("one royal 3b");
@@ -184,9 +188,15 @@ class Player {
   static showdown(gameState) {
 
   }
+  static hasLowPocket(player) {
+    if (player.hole_cards[0].rank > 9) {
+      return;
+    }
+    return player.hole_cards[0].rank === player.hole_cards[1].rank;
+  }
 
   static hasPocketPair(player) {
-    if (player.hole_cards[0].rank < 5) {
+    if (player.hole_cards[0].rank <= 9) {
       return;
     }
     return player.hole_cards[0].rank === player.hole_cards[1].rank;
