@@ -33,7 +33,7 @@ class Player {
   static isConnected(gameState) {
   }
 
-  static hasHighCardAce(gameState) {
+  static hasHighCardAce(player) {
     return player.hole_cards[0].rank === 'A' || player.hole_cards[1].rank === 'A';
   }
 
