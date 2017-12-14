@@ -27,9 +27,11 @@ class Player {
       }
     } else if (Player.hasFlush(gameState, player)) {
       bet(player.stack);
+      console.log("hasFlush");
       return;
     } else if (Player.hasTwoPairsWithBoard(gameState, player)) {
       bet(player.stack);
+      console.log("hasTwoPairsWithBoard");
       return;
     } else if (Player.isPairedWithBoard(gameState, player)) {
       if (Player.hasActivePlayerRaised(gameState)) {
