@@ -86,7 +86,7 @@ class Player {
   }
 
   static preFlopAllin(player, gameState) {
-    let hasPocketPairOrHighCardAce = Player.hasPocketPair(player) || Player.hasHighCardAce(player);
+    let hasPocketPairOrHighCardAce = Player.hasPocketPair(player) || Player.hasHighCardAceAndSolidKicker(player);
     let existsAlliningPlayerAndHasRoyalCards = !Player.isAllin(gameState) && Player.areBothRoyal(player);
 
     return hasPocketPairOrHighCardAce || existsAlliningPlayerAndHasRoyalCards;
@@ -134,8 +134,19 @@ class Player {
 
   }
 
-  static hasHighCardAce(player) {
-    return player.hole_cards[0].rank === 'A' || player.hole_cards[1].rank === 'A';
+  static isRoyal(card) {
+    return card.rank === 'Q' || card.rank === 'K' || card.rank === 'J' || card.rank === 'T';
+  }
+  static hasHighCardAceAndSolidKicker(player) {
+    let solidKickerAndHighCardAce = false;
+    
+    if (player.hole_cards[0].rank === 'A') {
+      solidKickerAndHighCardAce = Player.isRoyal(player.hole_cards[1]);
+    } else if (player.hole_cards[1].rank === 'A') {
+      solidKickerAndHighCardAce = Player.isRoyal(player.hole_cards[0]);
+    }
+
+    return solidKickerAndHighCardAce;
   }
 
   static hasHighCardsKing(player) {
