@@ -5,29 +5,58 @@ class Player {
 
   static betRequest(gameState, bet) {
     let player = gameState.players.find(player => player.name === 'HauptsacheMatthiasVerliert');
-    Player.preFlopAllin(player, gameState);
-    Player.preFlopCall(player, gameState);
-     
 
-    bet(50);
+    if (Player.isCurrentlyPreflop(gameState)) {
+      if (Player.preFlopAllin(player, gameState)) {
+        bet(player.stack);
+        return;
+      } else if (preFlopCall(player, gameState)) {
+        bet(gameState.players[gameState.in_action].bet);
+        return;
+      } else {
+        bet(0);
+        return;
+      }
+    } else if (Player.isPairedWithBoard(gameState, player)) {
+      if (Player.hasActivePlayerRaised(gameState)) {
+        if (gameState.players[gameState.in_action].bet <= gameState.pot * 0.75) {
+          bet(gameState.players[gameState.in_action].bet);
+          return;
+        } else {
+          bet(0);
+          return;
+        }
+      } else {
+        bet(gameState.pot / 2);
+        return;
+      }
+    }
+  }
+
+  static isPairedWithBoard(gameState, player) {
+    let matchingCard = gameState.community_cards.find(card => card.rank === player.hole_cards[0] || card.rank === player.hole_cards[1]);
+    
+    return matchingCard !== undefined && matchingCard !== null;
+  }
+
+  static isCurrentlyPreflop(gameState) {
+    return gameState.community_cards === null || gameState.community_cards === undefined || gameState.community_cards.length === 0;
   }
 
   static preFlopCall(player, gameState) {
     if (gameState.players[gameState.in_action].bet <= 3 * gameState.minimum_raise) {
-      bet(gameState.players[gameState.in_action].bet);
+      return true;
     }
+    return false;
   }
 
   static preFlopAllin(player, gameState) {
-    if (Player.hasPocketPair(player) || Player.hasHighCardAce(player)) {
-      bet(player.stack);
-      console.log("allin because pocket pair or high card ace");
-      return;
-    } else if (!Player.isAllin(gameState) && Player.areBothRoyal(player)) {
-      console.log("going allin with 2 royals because noone else went allin before");
-      bet(player.stack);
-    }
+    let hasPocketPairOrHighCardAce = Player.hasPocketPair(player) || Player.hasHighCardAce(player);
+    let existsAlliningPlayerAndHasRoyalCards = !Player.isAllin(gameState) && Player.areBothRoyal(player);
+
+    return hasPocketPairOrHighCardAce || existsAlliningPlayerAndHasRoyalCards;
   }
+
   static isAllin(gameState) {
     let isAllin = false;
     
