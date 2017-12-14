@@ -7,13 +7,10 @@ class Player {
     let player = gameState.players.find(player => players.name === 'HauptsacheMatthiasVerliert');
     
     if (hasPocketPair(player) || hasHighCardAce(player)) {
-      let currentPlayer = gameState.players.find(player => {
-        return players.name === 'HauptsacheMatthiasVerliert';
-      });
-
-      console.log(currentPlayer);
-      bet(currentPlayer.stack);
+      bet(player['stack']);
       return;
+    } else {
+      bet(100);
     }
 
     if (hasActivePlayerRaised(gameState)) {
@@ -27,7 +24,7 @@ class Player {
   }
 
   static hasPocketPair(player) {
-    return player['hole_cards'][0].rank === player['hole_cards'][1].rank;
+    return player.hole_cards[0].rank === player.hole_cards[1].rank;
   }
 
   static isSuited(gameState) {
@@ -43,7 +40,7 @@ class Player {
 
 
   static hasActivePlayerRaised(gameState) {
-    if (gameState.players[gameState.in_action]['bet'] > gameState.minimum_raise) {
+    if (gameState.players.gameState.in_action['bet'] > gameState.minimum_raise) {
       return true;
     }
     return false;
