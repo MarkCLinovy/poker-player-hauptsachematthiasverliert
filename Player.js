@@ -5,7 +5,7 @@ class Player {
 
   static betRequest(gameState, bet) {
     bet(0);
-
+    return;
     if (hasActivePlayerRaised(gameState)) {
     } else {
       bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise);
