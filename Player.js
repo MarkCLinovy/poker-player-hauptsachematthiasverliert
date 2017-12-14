@@ -25,6 +25,9 @@ class Player {
         if (gameState.players[gameState.in_action].bet <= gameState.pot * 0.75) {
           bet(gameState.players[gameState.in_action].bet);
           return;
+        } else if (Player.hasTopPair(gameState, player)) {
+          Player.call(bet, gameState);
+          return;
         } else {
           bet(0);
           return;
@@ -36,6 +39,10 @@ class Player {
     } else {
       bet(0);
     }
+  }
+
+  static hasTopPair(gameState, player) {
+    return false;
   }
 
   static hasFlush(gameState, player) {
