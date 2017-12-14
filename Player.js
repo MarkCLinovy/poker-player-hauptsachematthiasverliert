@@ -9,16 +9,20 @@ class Player {
     if (Player.isCurrentlyPreflop(gameState)) {
       if (Player.preFlopAllin(player, gameState)) {
         bet(player.stack);
+        console.log("preflop: all in");
         return;
       } else if (gameState.players[gameState.in_action].bet < 100) {
         Player.call(bet, gameState);
+        console.log("preflop: < 100");
         return;
       }
       else if (Player.hasHighCardsJunge || Player.hasHighCardsKing || Player.hasHighCardsQueen) {
         bet(100);
+        console.log("preflop-highcards: bet 100")
         return;
       } else {
         bet(0);
+        console.log("preflop-else: bet 0");
         return;
       }
     } else if (Player.hasFlush(gameState, player)) {
