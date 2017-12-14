@@ -21,7 +21,7 @@ class Player {
         return;
       } else if (gameState.players[gameState.in_action].bet < 100) {
         Player.call(bet, gameState);
-        console.log("preflop: < 16");
+        console.log("preflop: < 100");
         return;
       } else if (Players.isOneRoyal(player) && gameState.players[gameState.in_action].bet > 0 && gameState.players[gameState.in_action].stack !== 0) {
         Player.call(bet, gameState);
@@ -56,13 +56,16 @@ class Player {
         }
       } else {
         bet(gameState.pot / 2);
+        console.log("else bet pot/2");
         return;
       }
     } else if (Player.hasFlushDraw(gameState, player) && gameState.players[gameState.in_action].bet <= gameState.pot) {
-      Player.call(bet, gameState);   
+      Player.call(bet, gameState);
+      console.log("has flush draw")
       return;   
     } else {
       bet(0);
+      console.log("else bet 0");
     }
   }
 
