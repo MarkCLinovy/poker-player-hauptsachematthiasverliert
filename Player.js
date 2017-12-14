@@ -9,6 +9,7 @@ class Player {
         return players.name === 'HauptsacheMatthiasVerliert';
       });
 
+      console.log(currentPlayer);
       bet(currentPlayer.stack);
       return;
     }
