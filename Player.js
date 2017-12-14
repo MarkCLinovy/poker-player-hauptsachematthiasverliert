@@ -8,18 +8,17 @@ class Player {
     
     if (Player.hasPocketPair(player) || Player.hasHighCardAce(player)) {
       bet(player.stack);
+      console.log("allin because pocket pair or high card ace");
       return;
     } else {
       bet(100);
       return;
     }
-
-    if (Player.hasActivePlayerRaised(gameState)) {
-    } else {
-      bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise);
-    }
   }
 
+  static minRaise(gameState) {
+    bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise);
+  }
   static showdown(gameState) {
 
   }
