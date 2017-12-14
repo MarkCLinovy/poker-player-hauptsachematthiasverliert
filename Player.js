@@ -10,14 +10,8 @@ class Player {
       if (Player.preFlopAllin(player, gameState)) {
         bet(player.stack);
         return;
-<<<<<<< HEAD
-        
-      } else if (Player.preFlopCall(player, gameState)) {
-        bet(gameState.players[gameState.in_action].bet);
-=======
       } else if (gameState.players[gameState.in_action].bet < 100) {
         Player.call(bet, gameState);
->>>>>>> 7986bc23986e2e7d0a853045e5b2b354216ea740
         return;
       }
       else if (Player.hasHighCardsJunge || Player.hasHighCardsKing || Player.hasHighCardsQueen) {
