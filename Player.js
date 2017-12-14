@@ -46,7 +46,7 @@ class Player {
           console.log("isPairedWithBoard && hasActivePlayerRaised");
           return;
         } else if (Player.hasTopPair(gameState, player)) {
-          Player.call(bet, gameState);
+          bet(player.stack);
           console.log("hasTopPair");
           return;
         } else {
