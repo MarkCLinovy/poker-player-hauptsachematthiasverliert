@@ -178,6 +178,9 @@ class Player {
   }
 
   static hasPocketPair(player) {
+    if (player.hole_cards[0].rank < 5) {
+      return;
+    }
     return player.hole_cards[0].rank === player.hole_cards[1].rank;
   }
 
