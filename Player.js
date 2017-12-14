@@ -255,11 +255,10 @@ class Player {
 
 
   static hasActivePlayerRaised(gameState) {
-    return true;
-    // if (gameState.players[gameState.in_action].bet > gameState.minimum_raise) {
-    //   return true;
-    // }
-    // return false;
+    if (gameState.players[gameState.in_action].bet > gameState.minimum_raise) {
+      return true;
+    }
+    return false;
   }
 }
 
