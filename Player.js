@@ -53,6 +53,7 @@ class Player {
         }
       } else {
         bet(gameState.pot / 2);
+        console.log("else bet pot/2");
         return;
       }
     } else if (Player.hasFlushDraw(gameState, player) && gameState.players[gameState.in_action].bet <= gameState.pot) {
