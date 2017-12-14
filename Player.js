@@ -90,6 +90,12 @@ class Player {
       }
     }
 
+    if (Player.hasPocketPair(player)) {
+      if (player.hole_cards[1] === 'Q' ||player.hole_cards[1] === 'K' || player.hole_cards[1] === 'A' || player.hole_cards[1] === 'J') {
+        return true;
+      }
+    }
+    if (player.hole_cards[] === '')
     let matchingCard = gameState.community_cards.find(card => card.rank === player.hole_cards[0].rank || card.rank === player.hole_cards[1].rank);
     
     return matchingCard.rank === highestCard;
