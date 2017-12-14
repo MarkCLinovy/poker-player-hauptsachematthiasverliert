@@ -57,10 +57,12 @@ class Player {
         return;
       }
     } else if (Player.hasFlushDraw(gameState, player) && gameState.players[gameState.in_action].bet <= gameState.pot) {
-      Player.call(bet, gameState);   
+      Player.call(bet, gameState);
+      console.log("has flush draw")
       return;   
     } else {
       bet(0);
+      console.log("else bet 0");
     }
   }
 
