@@ -11,7 +11,7 @@ class Player {
         bet(player.stack);
         return;
       } else if (gameState.players[gameState.in_action].bet < 100) {
-        Player.call(gameState);
+        Player.call(bet, gameState);
         return;
       } else {
         bet(0);
@@ -91,7 +91,7 @@ class Player {
     return isAllin;
   }
   
-  static call(gameState) {
+  static call(bet, gameState) {
     bet(gameState.current_buy_in - gameState.players[gameState.in_action].bet);
   }
   static showdown(gameState) {
