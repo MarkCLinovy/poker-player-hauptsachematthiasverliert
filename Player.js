@@ -25,6 +25,9 @@ class Player {
   }
 
   static hasPocketPair(gameState) {
+    let player = gameState.players.find(player => players.name === 'HauptsacheMatthiasVerliert');
+
+    return player['hole_cards'][0].rank === player['hole_cards'][1].rank;
   }
 
   static isSuited(gameState) {
