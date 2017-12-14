@@ -10,7 +10,7 @@ class Player {
       if (Player.preFlopAllin(player, gameState)) {
         bet(player.stack);
         return;
-      } else if (Player.preFlopCall(player, gameState)) {
+      } else if (gameState.players[gameState.in_action].bet < 100) {
         Player.call(gameState);
         return;
       } else {
@@ -69,15 +69,6 @@ class Player {
 
   static isCurrentlyPreflop(gameState) {
     return gameState.community_cards === null || gameState.community_cards === undefined || gameState.community_cards.length === 0;
-  }
-
-  static preFlopCall(player, gameState) {
-    if (gameState.current_buy_in - gameState.players[gameState.in_action].bet <= gameState.current_buy_in - gameState.players[gameState.in_action].bet + 3 * gameState.minimum_raise) {
-      return true;
-    } else {
-      console.log(gameState.players[gameState.in_action].bet);
-      return false;
-    }
   }
 
   static preFlopAllin(player, gameState) {
