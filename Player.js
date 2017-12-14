@@ -12,11 +12,11 @@ class Player {
         console.log("preflop: all in");
         return;
       } else if (gameState.players[gameState.in_action].bet < 100 && Player.hasLowPocket(player)) {
-        bet(16);
+        bet(50);
         console.log("lowpocket bet 16");
         return;
       } else if (gameState.players[gameState.in_action].bet < 100 && Player.isOneRoyal(player)) {
-        bet(16);
+        bet(50);
         console.log("one royal 3b");
         return;
       } else if (gameState.players[gameState.in_action].bet < 100) {
@@ -26,10 +26,6 @@ class Player {
       } else if (Players.isOneRoyal(player) && gameState.players[gameState.in_action].bet > 0 && gameState.players[gameState.in_action].stack !== 0) {
         Player.call(bet, gameState);
         console.log("call everything with one royal if no allin");
-      } else if (Player.hasHighCardsJunge || Player.hasHighCardsKing || Player.hasHighCardsQueen) {
-        bet(100);
-        console.log("preflop-highcards: bet 100")
-        return;
       } else {
         bet(0);
         console.log("preflop-else: bet 0");
