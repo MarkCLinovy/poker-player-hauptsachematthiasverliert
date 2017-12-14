@@ -19,7 +19,7 @@ class Player {
         Player.call(bet, gameState);
         console.log("preflop: < 100");
         return;
-      } else if (Player.hasHighCardsJunge || Player.hasHighCardsKing || Player.hasHighCardsQueen) {
+      } else if (Player.hasHighCardsJunge(player) || Player.hasHighCardsKing(player) || Player.hasHighCardsQueen(player)) {
         bet(100);
         console.log("preflop-highcards: bet 100")
         return;
