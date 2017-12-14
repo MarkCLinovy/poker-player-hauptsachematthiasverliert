@@ -5,7 +5,20 @@ class Player {
 
   static betRequest(gameState, bet) {
     let player = gameState.players.find(player => player.name === 'HauptsacheMatthiasVerliert');
-    
+    Player.preFlopAllin(player);
+    Player.preFlopCall(player);
+     
+
+    bet(50);
+  }
+
+  static preFlopCall(player) {
+    if (gameState.players[gameState.in_action].bet <= 3 * gameState.minimum_raise) {
+      bet(gameState.players[gameState.in_action].bet);
+    }
+  }
+
+  static preFlopAllin(player) {
     if (Player.hasPocketPair(player) || Player.hasHighCardAce(player)) {
       bet(player.stack);
       console.log("allin because pocket pair or high card ace");
@@ -14,9 +27,7 @@ class Player {
       console.log("going allin with 2 royals because noone else went allin before");
       bet(player.stack);
     }
-    bet(50);
   }
-
   static isAllin(gameState) {
     let isAllin = false;
     
