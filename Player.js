@@ -6,7 +6,7 @@ class Player {
   static betRequest(gameState, bet) {
     if (hasPocketPair(gameState) || hasHighCardAce(gameState)) {
       let currentPlayer = gameState.players.find(player => {
-        return players.name === 'HauptsacheMatthiasVerliert');
+        return players.name === 'HauptsacheMatthiasVerliert';
       });
 
       bet(currentPlayer.stack);
@@ -32,7 +32,8 @@ class Player {
   static isConnected(gameState) {
   }
 
-  hasHighCardAce(gameState) {
+  static hasHighCardAce(gameState) {
+
   }
 
 
