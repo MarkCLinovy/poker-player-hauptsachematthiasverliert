@@ -17,7 +17,6 @@ class Player {
       else if (Player.hasHighCardsJunge || Player.hasHighCardsKing || Player.hasHighCardsQueen) {
         bet(100);
         return;
-
       } else {
         bet(0);
         return;
@@ -136,8 +135,8 @@ class Player {
   }
 
   static areBothRoyal(player) {
-    let cardOneRoyal = player.hole_cards[0].rank === 'Q' || player.hole_cards[0].rank === 'K' || player.hole_cards[0].rank === 'A' || player.hole_cards[0].rank === '10' || player.hole_cards[0].rank === 'J';
-    let secondCardRoyal = player.hole_cards[1].rank === 'Q' || player.hole_cards[1].rank === 'K' || player.hole_cards[1].rank === 'A' || player.hole_cards[1].rank === '10' || player.hole_cards[1].rank === 'J';
+    let cardOneRoyal = player.hole_cards[0].rank === 'Q' || player.hole_cards[0].rank === 'K' || player.hole_cards[0].rank === 'A' || player.hole_cards[0].rank === 'J';
+    let secondCardRoyal = player.hole_cards[1].rank === 'Q' || player.hole_cards[1].rank === 'K' || player.hole_cards[1].rank === 'A' || player.hole_cards[1].rank === 'J';
     return cardOneRoyal && secondCardRoyal;  
   }
 
