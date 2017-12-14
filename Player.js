@@ -15,7 +15,7 @@ class Player {
         bet(50);
         console.log("lowpocket bet 16");
         return;
-      } else if (gameState.players[gameState.in_action].bet < 100 && Player.isOneRoyal(player)) {
+      } else if (gameState.players[gameState.in_action].bet < 100 && Player.isOneRoyal(player) || Player.areBothRoyal(player)) {
         bet(50);
         console.log("one royal 3b");
         return;
@@ -166,9 +166,8 @@ class Player {
 
   static preFlopAllin(player, gameState) {
     let hasPocketPairOrHighCardAce = Player.hasPocketPair(player) || Player.hasHighCardAceAndSolidKicker(player);
-    let existsAlliningPlayerAndHasRoyalCards = !Player.isAllin(gameState) && Player.areBothRoyal(player);
 
-    return hasPocketPairOrHighCardAce || existsAlliningPlayerAndHasRoyalCards;
+    return hasPocketPairOrHighCardAce;
   }
 
   static isAllin(gameState) {
