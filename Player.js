@@ -11,12 +11,15 @@ class Player {
         bet(player.stack);
         console.log("preflop: all in");
         return;
+      } else if (gameState.players[gameState.in_action].bet < 100 && Player.isOneRoyal(player)) {
+        bet(250);
+        console.log("one royal 3b");
+        return;
       } else if (gameState.players[gameState.in_action].bet < 100) {
         Player.call(bet, gameState);
         console.log("preflop: < 100");
         return;
-      }
-      else if (Player.hasHighCardsJunge || Player.hasHighCardsKing || Player.hasHighCardsQueen) {
+      } else if (Player.hasHighCardsJunge || Player.hasHighCardsKing || Player.hasHighCardsQueen) {
         bet(100);
         console.log("preflop-highcards: bet 100")
         return;
@@ -189,7 +192,9 @@ class Player {
   }
 
   static isOneRoyal(player) {
-
+    let cardOneRoyal = player.hole_cards[0].rank === 'Q' || player.hole_cards[0].rank === 'K' || player.hole_cards[0].rank === 'A';
+    let secondCardRoyal = player.hole_cards[1].rank === 'Q' || player.hole_cards[1].rank === 'K' || player.hole_cards[1].rank === 'A';
+    return cardOneRoyal || secondCardRoyal;  
   }
 
   static areBothRoyal(player) {
