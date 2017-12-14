@@ -4,8 +4,15 @@ class Player {
   }
 
   static betRequest(gameState, bet) {
-    bet(0);
-    return;
+    if (hasPocketPair(gameState) || hasHighCardAce(gameState)) {
+      let currentPlayer = gameState.players.find(player => {
+        return players.name === 'HauptsacheMatthiasVerliert');
+      });
+
+      bet(currentPlayer.stack);
+      return;
+    }
+
     if (hasActivePlayerRaised(gameState)) {
     } else {
       bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise);
@@ -13,10 +20,22 @@ class Player {
   }
 
   static showdown(gameState) {
-    //let currentPlayer = gameState.players.find(player => {
-    //  return players.name === 'HauptsacheMatthiasVerliert');
-    //}
+
   }
+
+  static hasPocketPair(gameState) {
+  }
+
+  static isSuited(gameState) {
+  }
+
+  static isConnected(gameState) {
+  }
+
+  hasHighCardAce(gameState) {
+  }
+
+
 
   static hasActivePlayerRaised(gameState) {
     if (gameState.players[gameState.in_action]['bet'] > gameState.minimum_raise) {
