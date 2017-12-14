@@ -25,6 +25,9 @@ class Player {
     } else if (Player.hasFlush(gameState, player)) {
       bet(player.stack);
       return;
+    } else if (Player.hasTwoPairsWithBoard(gameState, player)) {
+      bet(player.stack);
+      return;
     } else if (Player.isPairedWithBoard(gameState, player)) {
       if (Player.hasActivePlayerRaised(gameState)) {
         if (gameState.players[gameState.in_action].bet <= gameState.pot * 0.75) {
@@ -75,6 +78,14 @@ class Player {
 
     return firstSuitMatches >= 5 || secondSuitMatches >= 5;
   }
+
+  static hasTwoPairsWithBoard(gameState, player) {
+    let matchingFirstCard = gameState.community_cards.find(card => card.rank === player.hole_cards[0].rank);
+    let matchingSecondCard = gameState.community_cards.find(card => card.rank === player.hole_cards[1].rank);
+
+    return matchingFirstCard && matchingSecondCard;
+  }
+
   static isPairedWithBoard(gameState, player) {
     let matchingCard = gameState.community_cards.find(card => card.rank === player.hole_cards[0].rank || card.rank === player.hole_cards[1].rank);
     
@@ -137,6 +148,7 @@ class Player {
   static isRoyal(card) {
     return card.rank === 'Q' || card.rank === 'K' || card.rank === 'J' || card.rank === 'T';
   }
+
   static hasHighCardAceAndSolidKicker(player) {
     let solidKickerAndHighCardAce = false;
     
