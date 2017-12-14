@@ -11,6 +11,7 @@ class Player {
       console.log("allin because pocket pair or high card ace");
       return;
     } else if (!Player.isAllin(gameState) && Player.areBothRoyal(player)) {
+      console.log("going allin with 2 royals because noone else went allin before");
       bet(player.stack);
     }
     bet(50);
