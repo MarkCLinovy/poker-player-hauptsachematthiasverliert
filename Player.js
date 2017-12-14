@@ -4,13 +4,25 @@ class Player {
   }
 
   static betRequest(gameState, bet) {
-    bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise);
+
+    if (hasActivePlayerRaised(gameState)) {
+      bet(0);
+    } else {
+      bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise);
+    }
   }
 
   static showdown(gameState) {
     //let currentPlayer = gameState.players.find(player => {
     //  return players.name === 'HauptsacheMatthiasVerliert');
     //}
+  }
+
+  static hasActivePlayerRaised(gameState) {
+    if (gameState.players[gameState.in_action]['bet'] > 0) {
+      return true;
+    }
+    return false;
   }
 }
 
