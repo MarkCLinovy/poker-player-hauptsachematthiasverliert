@@ -8,7 +8,7 @@ class Player {
 
     if (Player.isCurrentlyPreflop(gameState)) {
       if (Player.preFlopAllin(player, gameState)) {
-        bet(player.stack);
+        bet(Math.min(300, player.stack));
         console.log("preflop: all in");
         return;
       } else if (gameState.players[gameState.in_action].bet < 100 && Player.hasLowPocket(player)) {
