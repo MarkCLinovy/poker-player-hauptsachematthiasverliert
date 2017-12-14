@@ -27,10 +27,20 @@ class Player {
     return player.hole_cards[0].rank === player.hole_cards[1].rank;
   }
 
-  static isSuited(gameState) {
+  static isSuited(player) {
+    return player.hole_cards[0].suit === player.hole_cards[1].suit;
+  }
+
+  static isOneRoyal(player) {
+
+  }
+
+  static areBothRoyal(player) {
+    if (player.hole_cards[0].rank === 'Q' || player.hole_cards[0].rank === 'K' || player.hole_cards[0].rank === 'A' || player.hole_cards[0].rank === 'T' || player.hole_cards[0].rank === 'J') 
   }
 
   static isConnected(gameState) {
+
   }
 
   static hasHighCardAce(player) {
@@ -40,7 +50,7 @@ class Player {
 
 
   static hasActivePlayerRaised(gameState) {
-    if (gameState.players.gameState.in_action.bet > gameState.minimum_raise) {
+    if (gameState.players[gameState.in_action].bet > gameState.minimum_raise) {
       return true;
     }
     return false;
