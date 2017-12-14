@@ -37,12 +37,15 @@ class Player {
       if (Player.hasActivePlayerRaised(gameState)) {
         if (gameState.players[gameState.in_action].bet <= gameState.pot * 0.75) {
           bet(gameState.players[gameState.in_action].bet);
+          console.log("isPairedWithBoard && hasActivePlayerRaised");
           return;
         } else if (Player.hasTopPair(gameState, player)) {
           Player.call(bet, gameState);
+          console.log("hasTopPair");
           return;
         } else {
           bet(0);
+          console.log("bet 0");
           return;
         }
       } else {
