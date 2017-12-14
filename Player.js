@@ -6,14 +6,14 @@ class Player {
   static betRequest(gameState, bet) {
     let player = gameState.players.find(player => player.name === 'HauptsacheMatthiasVerliert');
     
-    if (hasPocketPair(player) || hasHighCardAce(player)) {
+    if (Player.hasPocketPair(player) || Player.hasHighCardAce(player)) {
       bet(player['stack']);
       return;
     } else {
       bet(100);
     }
 
-    if (hasActivePlayerRaised(gameState)) {
+    if (Player.hasActivePlayerRaised(gameState)) {
     } else {
       bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise);
     }
