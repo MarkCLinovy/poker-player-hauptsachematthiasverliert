@@ -6,14 +6,29 @@ class Player {
   static betRequest(gameState, bet) {
     let player = gameState.players.find(player => player.name === 'HauptsacheMatthiasVerliert');
     
-    if (Player.hasPocketPair(player) || Player.hasHighCardAce(player) || Player.areBothRoyal(player)) {
+    if (Player.hasPocketPair(player) || Player.hasHighCardAce(player)) {
       bet(player.stack);
       console.log("allin because pocket pair or high card ace");
       return;
-    } 
+    } else if (!Player.isAllin(gameState) && Player.areBothRoyal(player)) {
+      bet(player.stack);
+    }
     bet(50);
   }
 
+  static isAllin(gameState) {
+    let isAllin = false;
+    
+    for (let player in gameState.players) {
+      if (player.bet > 0 && player.stack === 0) {
+        isAllin = true;
+        break;
+      }
+    }
+
+    return isAllin;
+  }
+  
   static minRaise(gameState) {
     bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise);
   }
