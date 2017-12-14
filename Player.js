@@ -13,7 +13,7 @@ class Player {
         return;
       } else if (gameState.players[gameState.in_action].bet < 100 && Player.hasLowPocket(player)) {
         bet(16);
-        console.log("lowpocket bet 250");
+        console.log("lowpocket bet 16");
         return;
       } else if (gameState.players[gameState.in_action].bet < 100 && Player.isOneRoyal(player)) {
         bet(16);
@@ -21,7 +21,7 @@ class Player {
         return;
       } else if (gameState.players[gameState.in_action].bet < 100) {
         Player.call(bet, gameState);
-        console.log("preflop: < 100");
+        console.log("preflop: < 16");
         return;
       } else if (Player.hasHighCardsJunge || Player.hasHighCardsKing || Player.hasHighCardsQueen) {
         bet(100);
