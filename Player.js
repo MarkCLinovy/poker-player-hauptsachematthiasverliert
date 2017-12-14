@@ -4,7 +4,9 @@ class Player {
   }
 
   static betRequest(gameState, bet) {
-    if (hasPocketPair(gameState) || hasHighCardAce(gameState)) {
+    let player = gameState.players.find(player => players.name === 'HauptsacheMatthiasVerliert');
+    
+    if (hasPocketPair(player) || hasHighCardAce(player)) {
       let currentPlayer = gameState.players.find(player => {
         return players.name === 'HauptsacheMatthiasVerliert';
       });
@@ -24,9 +26,7 @@ class Player {
 
   }
 
-  static hasPocketPair(gameState) {
-    let player = gameState.players.find(player => players.name === 'HauptsacheMatthiasVerliert');
-
+  static hasPocketPair(player) {
     return player['hole_cards'][0].rank === player['hole_cards'][1].rank;
   }
 
@@ -37,7 +37,7 @@ class Player {
   }
 
   static hasHighCardAce(gameState) {
-
+    return player['hole_cards'][0].rank === 'A' || player['hole_cards'][1].rank === 'A';
   }
 
 
