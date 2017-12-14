@@ -11,7 +11,7 @@ class Player {
         bet(player.stack);
         return;
       } else if (Player.preFlopCall(player, gameState)) {
-        bet(gameState.players[gameState.in_action].bet);
+        Player.call(gameState);
         return;
       } else {
         bet(0);
@@ -72,10 +72,12 @@ class Player {
   }
 
   static preFlopCall(player, gameState) {
-    if (gameState.players[gameState.in_action].bet <= 3 * gameState.minimum_raise) {
+    if (gameState.current_buy_in - gameState.players[gameState.in_action].bet <= gameState.current_buy_in - gameState.players[gameState.in_action].bet + 3 * gameState.minimum_raise) {
       return true;
+    } else {
+      console.log(gameState.players[gameState.in_action].bet);
+      return false;
     }
-    return false;
   }
 
   static preFlopAllin(player, gameState) {
@@ -98,8 +100,8 @@ class Player {
     return isAllin;
   }
   
-  static minRaise(gameState) {
-    bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise);
+  static call(gameState) {
+    bet(gameState.current_buy_in - gameState.players[gameState.in_action].bet);
   }
   static showdown(gameState) {
 
