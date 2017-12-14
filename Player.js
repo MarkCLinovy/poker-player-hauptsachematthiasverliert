@@ -7,10 +7,11 @@ class Player {
     let player = gameState.players.find(player => player.name === 'HauptsacheMatthiasVerliert');
     
     if (Player.hasPocketPair(player) || Player.hasHighCardAce(player)) {
-      bet(player['stack']);
+      bet(player.stack);
       return;
     } else {
       bet(100);
+      return;
     }
 
     if (Player.hasActivePlayerRaised(gameState)) {
