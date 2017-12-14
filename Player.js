@@ -10,9 +10,15 @@ class Player {
       if (Player.preFlopAllin(player, gameState)) {
         bet(player.stack);
         return;
+        
       } else if (Player.preFlopCall(player, gameState)) {
         bet(gameState.players[gameState.in_action].bet);
         return;
+      }
+      else if (Player.hasHighCardsJunge || Player.hasHighCardsKing || Player.hasHighCardsQueen) {
+        bet(100);
+        return;
+
       } else {
         bet(0);
         return;
@@ -129,6 +135,18 @@ class Player {
 
   static hasHighCardAce(player) {
     return player.hole_cards[0].rank === 'A' || player.hole_cards[1].rank === 'A';
+  }
+
+  static hasHighCardsKing(player) {
+    return player.hole_cards[0].rank === 'K' || player.hole_cards[1].rank === 'K';
+  }
+
+  static hasHighCardsJunge(player) {
+    return player.hole_cards[0].rank === 'J' || player.hole_cards[1].rank === 'J';
+  }
+
+  static hasHighCardsQueen(player) {
+    return player.hole_cards[0].rank === 'Q' || player.hole_cards[1].rank === 'Q';
   }
 
 
