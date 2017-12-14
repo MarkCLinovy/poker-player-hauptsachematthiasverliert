@@ -14,6 +14,7 @@ class Player {
       bet(101);
       return;
     }
+    bet(0);
   }
 
   static minRaise(gameState) {
