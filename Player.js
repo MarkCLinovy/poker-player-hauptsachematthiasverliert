@@ -43,6 +43,9 @@ class Player {
         bet(gameState.pot / 2);
         return;
       }
+    } else if (Player.hasFlushDraw(gameState, player) && gameState.players[gameState.in_action].bet <= gameState.pot) {
+      Player.call(bet, gameState);   
+      return;   
     } else {
       bet(0);
     }
@@ -50,6 +53,32 @@ class Player {
 
   static hasTopPair(gameState, player) {
     return false;
+  }
+
+  static hasFlushDraw(gameState, player) {
+    let cardOneSuit = player.hole_cards[0].suit;
+    let cardTwoSuit = player.hole_cards[1].suit;
+    
+    let firstSuitMatches = 1;
+    let secondSuitMatches = 1;
+
+    if (cardTwoSuit === cardOneSuit) {
+      firstSuitMatches++;
+      secondSuitMatches++;
+    }
+
+    for (let card in gameState.community_cards) {
+      if (card.suit === cardOneSuit) {
+        firstSuitMatches++;
+      }
+    }
+    for (let card in gameState.community_cards) {
+      if (card.suit === cardTwoSuit) {
+        secondSuitMatches++;
+      }
+    }
+
+    return firstSuitMatches >= 4 || secondSuitMatches >= 4;
   }
 
   static hasFlush(gameState, player) {
