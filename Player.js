@@ -6,7 +6,7 @@ class Player {
   static betRequest(gameState, bet) {
     let player = gameState.players.find(player => player.name === 'HauptsacheMatthiasVerliert');
     
-    if (Player.hasPocketPair(player) || Player.hasHighCardAce(player)) {
+    if (Player.hasPocketPair(player) || Player.hasHighCardAce(player) || Player.areBothRoyal(player)) {
       bet(player.stack);
       console.log("allin because pocket pair or high card ace");
       return;
@@ -34,10 +34,9 @@ class Player {
   }
 
   static areBothRoyal(player) {
-    if (player.hole_cards[0].rank === 'Q' || player.hole_cards[0].rank === 'K' || player.hole_cards[0].rank === 'A' || player.hole_cards[0].rank === 'T' || player.hole_cards[0].rank === 'J') {
-      return true;
-    }
-    return false;
+    let cardOneRoyal = player.hole_cards[0].rank === 'Q' || player.hole_cards[0].rank === 'K' || player.hole_cards[0].rank === 'A' || player.hole_cards[0].rank === 'T' || player.hole_cards[0].rank === 'J';
+    let secondCardRoyal = player.hole_cards[1].rank === 'Q' || player.hole_cards[1].rank === 'K' || player.hole_cards[1].rank === 'A' || player.hole_cards[1].rank === 'T' || player.hole_cards[1].rank === 'J';
+    return cardOneRoyal && secondCardRoyal;  
   }
 
   static isConnected(gameState) {
