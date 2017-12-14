@@ -10,13 +10,16 @@ class Player {
       if (Player.preFlopAllin(player, gameState)) {
         bet(player.stack);
         return;
-      } else if (preFlopCall(player, gameState)) {
+      } else if (Player.preFlopCall(player, gameState)) {
         bet(gameState.players[gameState.in_action].bet);
         return;
       } else {
         bet(0);
         return;
       }
+    } else if (Player.hasFlush(gameState, player)) {
+      bet(player.stack);
+      return;
     } else if (Player.isPairedWithBoard(gameState, player)) {
       if (Player.hasActivePlayerRaised(gameState)) {
         if (gameState.players[gameState.in_action].bet <= gameState.pot * 0.75) {
@@ -33,6 +36,31 @@ class Player {
     }
   }
 
+  static hasFlush(gameState, player) {
+    let cardOneSuit = player.hole_cards[0].suit;
+    let cardTwoSuit = player.hole_cards[1].suit;
+    
+    let firstSuitMatches = 0;
+    let secondSuitMatches = 0;
+
+    if (cardTwoSuit === cardOneSuit) {
+      firstSuitMatches++;
+      secondSuitMatches++;
+    }
+
+    for (let card in gameState.community_cards) {
+      if (card.suit === cardOneSuit) {
+        firstSuitMatches++;
+      }
+    }
+    for (let card in gameState.community_cards) {
+      if (card.suit === cardTwoSuit) {
+        secondSuitMatches++;
+      }
+    }
+
+    return firstSuitMatches >= 5 || secondSuitMatches >= 5;
+  }
   static isPairedWithBoard(gameState, player) {
     let matchingCard = gameState.community_cards.find(card => card.rank === player.hole_cards[0] || card.rank === player.hole_cards[1]);
     
@@ -90,8 +118,8 @@ class Player {
   }
 
   static areBothRoyal(player) {
-    let cardOneRoyal = player.hole_cards[0].rank === 'Q' || player.hole_cards[0].rank === 'K' || player.hole_cards[0].rank === 'A' || player.hole_cards[0].rank === 'T' || player.hole_cards[0].rank === 'J';
-    let secondCardRoyal = player.hole_cards[1].rank === 'Q' || player.hole_cards[1].rank === 'K' || player.hole_cards[1].rank === 'A' || player.hole_cards[1].rank === 'T' || player.hole_cards[1].rank === 'J';
+    let cardOneRoyal = player.hole_cards[0].rank === 'Q' || player.hole_cards[0].rank === 'K' || player.hole_cards[0].rank === 'A' || player.hole_cards[0].rank === '10' || player.hole_cards[0].rank === 'J';
+    let secondCardRoyal = player.hole_cards[1].rank === 'Q' || player.hole_cards[1].rank === 'K' || player.hole_cards[1].rank === 'A' || player.hole_cards[1].rank === '10' || player.hole_cards[1].rank === 'J';
     return cardOneRoyal && secondCardRoyal;  
   }
 
