@@ -35,13 +35,13 @@ class Player {
   }
 
   static hasHighCardAce(gameState) {
-    return player['hole_cards'][0].rank === 'A' || player['hole_cards'][1].rank === 'A';
+    return player.hole_cards[0].rank === 'A' || player.hole_cards[1].rank === 'A';
   }
 
 
 
   static hasActivePlayerRaised(gameState) {
-    if (gameState.players.gameState.in_action['bet'] > gameState.minimum_raise) {
+    if (gameState.players.gameState.in_action.bet > gameState.minimum_raise) {
       return true;
     }
     return false;
