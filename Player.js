@@ -36,7 +36,10 @@ class Player {
   }
 
   static areBothRoyal(player) {
-    if (player.hole_cards[0].rank === 'Q' || player.hole_cards[0].rank === 'K' || player.hole_cards[0].rank === 'A' || player.hole_cards[0].rank === 'T' || player.hole_cards[0].rank === 'J') 
+    if (player.hole_cards[0].rank === 'Q' || player.hole_cards[0].rank === 'K' || player.hole_cards[0].rank === 'A' || player.hole_cards[0].rank === 'T' || player.hole_cards[0].rank === 'J') {
+      return true;
+    }
+    return false;
   }
 
   static isConnected(gameState) {
