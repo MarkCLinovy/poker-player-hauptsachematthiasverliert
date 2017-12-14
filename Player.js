@@ -52,11 +52,29 @@ class Player {
   }
 
   static hasTopPair(gameState, player) {
-    let matchingCard = gameState.community_cards.find(card => card.rank === player.hole_cards[0].rank || card.rank === player.hole_cards[1].rank);
-    if (matchingCard.rank === 'Q' || matchingCard.rank === 'K' || matchingCard.rank === 'A' || matchingCard.rank === 'J') {
-      return true;
+    let highestCard = '1';
+
+    for (let card in gameState.community_cards) {
+      if (card.rank === 'A') {
+        highestCard = 'A';
+        break;
+      } else if (card.rank === 'K') {
+        if (highestCard !== 'A')
+          highestCard = 'K';
+      } else if (card.rank === 'Q') {
+        if (highestCard !== 'A' && highestCard !== 'K')
+          highestCard = 'Q';
+      } else if (card.rank === 'J') {
+        if (highestCard !== 'A' && highestCard !== 'K' && highestCard !== 'Q')
+          highestCard = 'J';
+      } else if (card.rank > highestCard) {
+        highestCard = card.rank;
+      }
     }
-    return false;
+
+    let matchingCard = gameState.community_cards.find(card => card.rank === player.hole_cards[0].rank || card.rank === player.hole_cards[1].rank);
+    
+    return matchingCard.rank === highestCard;
   }
 
   static hasFlushDraw(gameState, player) {
