@@ -62,7 +62,7 @@ class Player {
     return firstSuitMatches >= 5 || secondSuitMatches >= 5;
   }
   static isPairedWithBoard(gameState, player) {
-    let matchingCard = gameState.community_cards.find(card => card.rank === player.hole_cards[0] || card.rank === player.hole_cards[1]);
+    let matchingCard = gameState.community_cards.find(card => card.rank === player.hole_cards[0].rank || card.rank === player.hole_cards[1].rank);
     
     return matchingCard !== undefined && matchingCard !== null;
   }
