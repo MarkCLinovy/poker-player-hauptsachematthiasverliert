@@ -5,14 +5,14 @@ class Player {
 
   static betRequest(gameState, bet) {
     let player = gameState.players.find(player => player.name === 'HauptsacheMatthiasVerliert');
-    Player.preFlopAllin(player, gameSate);
+    Player.preFlopAllin(player, gameState);
     Player.preFlopCall(player, gameState);
      
 
     bet(50);
   }
 
-  static preFlopCall(player) {
+  static preFlopCall(player, gameState) {
     if (gameState.players[gameState.in_action].bet <= 3 * gameState.minimum_raise) {
       bet(gameState.players[gameState.in_action].bet);
     }
