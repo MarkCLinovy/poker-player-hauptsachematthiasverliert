@@ -4,7 +4,7 @@ class Player {
   }
 
   static betRequest(gameState, bet) {
-    let player = gameState.players.find(player => players.name === 'HauptsacheMatthiasVerliert');
+    let player = gameState.players.find(player => player.name === 'HauptsacheMatthiasVerliert');
     
     if (hasPocketPair(player) || hasHighCardAce(player)) {
       bet(player['stack']);
