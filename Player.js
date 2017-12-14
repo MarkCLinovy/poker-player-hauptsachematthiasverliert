@@ -12,11 +12,11 @@ class Player {
         console.log("preflop: all in");
         return;
       } else if (gameState.players[gameState.in_action].bet < 100 && Player.hasLowPocket(player)) {
-        bet(250);
+        bet(16);
         console.log("lowpocket bet 250");
         return;
       } else if (gameState.players[gameState.in_action].bet < 100 && Player.isOneRoyal(player)) {
-        bet(250);
+        bet(16);
         console.log("one royal 3b");
         return;
       } else if (gameState.players[gameState.in_action].bet < 100) {
