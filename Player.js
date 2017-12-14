@@ -11,7 +11,7 @@ class Player {
       console.log("allin because pocket pair or high card ace");
       return;
     } 
-    bet(0);
+    bet(50);
   }
 
   static minRaise(gameState) {
