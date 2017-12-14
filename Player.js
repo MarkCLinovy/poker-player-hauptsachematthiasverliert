@@ -145,7 +145,7 @@ class Player {
   }
 
   static isRoyal(card) {
-    return card.rank === 'Q' || card.rank === 'K' || card.rank === 'J' || card.rank === 'T';
+    return card.rank === 'Q' || card.rank === 'K' || card.rank === 'J' || card.rank === '10';
   }
 
   static hasHighCardAceAndSolidKicker(player) {
