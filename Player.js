@@ -5,8 +5,8 @@ class Player {
 
   static betRequest(gameState, bet) {
     let player = gameState.players.find(player => player.name === 'HauptsacheMatthiasVerliert');
-    Player.preFlopAllin(player);
-    Player.preFlopCall(player);
+    Player.preFlopAllin(player, gameSate);
+    Player.preFlopCall(player, gameState);
      
 
     bet(50);
@@ -18,7 +18,7 @@ class Player {
     }
   }
 
-  static preFlopAllin(player) {
+  static preFlopAllin(player, gameState) {
     if (Player.hasPocketPair(player) || Player.hasHighCardAce(player)) {
       bet(player.stack);
       console.log("allin because pocket pair or high card ace");
