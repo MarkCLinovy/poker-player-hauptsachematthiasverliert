@@ -33,6 +33,8 @@ class Player {
         bet(gameState.pot / 2);
         return;
       }
+    } else {
+      bet(0);
     }
   }
 
