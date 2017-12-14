@@ -23,7 +23,7 @@ class Player {
         Player.call(bet, gameState);
         console.log("preflop: < 100");
         return;
-      } else if (Players.isOneRoyal(player) && gameState.players[gameState.in_action].bet > 0 && gameState.players[gameState.in_action].stack !== 0) {
+      } else if (Player.isOneRoyal(player) && gameState.players[gameState.in_action].bet > 0 && gameState.players[gameState.in_action].stack !== 0) {
         Player.call(bet, gameState);
         console.log("call everything with one royal if no allin");
       } else {
