@@ -56,8 +56,8 @@ class Player {
     let cardOneSuit = player.hole_cards[0].suit;
     let cardTwoSuit = player.hole_cards[1].suit;
     
-    let firstSuitMatches = 0;
-    let secondSuitMatches = 0;
+    let firstSuitMatches = 1;
+    let secondSuitMatches = 1;
 
     if (cardTwoSuit === cardOneSuit) {
       firstSuitMatches++;
