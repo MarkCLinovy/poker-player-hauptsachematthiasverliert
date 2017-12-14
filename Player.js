@@ -10,9 +10,14 @@ class Player {
       if (Player.preFlopAllin(player, gameState)) {
         bet(player.stack);
         return;
+<<<<<<< HEAD
         
       } else if (Player.preFlopCall(player, gameState)) {
         bet(gameState.players[gameState.in_action].bet);
+=======
+      } else if (gameState.players[gameState.in_action].bet < 100) {
+        Player.call(bet, gameState);
+>>>>>>> 7986bc23986e2e7d0a853045e5b2b354216ea740
         return;
       }
       else if (Player.hasHighCardsJunge || Player.hasHighCardsKing || Player.hasHighCardsQueen) {
@@ -39,6 +44,8 @@ class Player {
         bet(gameState.pot / 2);
         return;
       }
+    } else {
+      bet(0);
     }
   }
 
@@ -77,13 +84,6 @@ class Player {
     return gameState.community_cards === null || gameState.community_cards === undefined || gameState.community_cards.length === 0;
   }
 
-  static preFlopCall(player, gameState) {
-    if (gameState.players[gameState.in_action].bet <= 3 * gameState.minimum_raise) {
-      return true;
-    }
-    return false;
-  }
-
   static preFlopAllin(player, gameState) {
     let hasPocketPairOrHighCardAce = Player.hasPocketPair(player) || Player.hasHighCardAce(player);
     let existsAlliningPlayerAndHasRoyalCards = !Player.isAllin(gameState) && Player.areBothRoyal(player);
@@ -104,8 +104,8 @@ class Player {
     return isAllin;
   }
   
-  static minRaise(gameState) {
-    bet(gameState.current_buy_in - gameState.players[gameState.in_action]['bet'] + gameState.minimum_raise);
+  static call(bet, gameState) {
+    bet(gameState.current_buy_in - gameState.players[gameState.in_action].bet);
   }
   static showdown(gameState) {
 
