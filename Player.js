@@ -55,7 +55,7 @@ class Player {
           return;
         }
       } else {
-        bet(gameState.pot / 2);
+        bet(Math.round(gameState.pot / 2));
         console.log("else bet pot/2");
         return;
       }
