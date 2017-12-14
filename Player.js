@@ -52,6 +52,10 @@ class Player {
   }
 
   static hasTopPair(gameState, player) {
+    let matchingCard = gameState.community_cards.find(card => card.rank === player.hole_cards[0].rank || card.rank === player.hole_cards[1].rank);
+    if (matchingCard.rank === 'Q' || matchingCard.rank === 'K' || matchingCard.rank === 'A' || matchingCard.rank === 'J') {
+      return true;
+    }
     return false;
   }
 
